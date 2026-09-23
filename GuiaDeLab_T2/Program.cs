@@ -28,8 +28,7 @@ class Program
         return true;
     }
 
-    // Valida que un texto obligatorio no esté vacío
-    // ni contenga únicamente espacios.
+    // Valida que un texto obligatorio no esté vacío.
     static bool ValidarTexto(string texto)
     {
         return !string.IsNullOrWhiteSpace(texto);
