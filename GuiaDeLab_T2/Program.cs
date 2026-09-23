@@ -53,14 +53,89 @@ static string AsignarPrioridad(string tipo)
 
     return "Baja";
 }
-static void Main()
+static void MostrarResumen(
+    string codigo,
+    string nombre,
+    string tipo,
+    string descripcion,
+    string prioridad)
 {
-    Console.WriteLine("Prueba de asignación de prioridad");
+    Console.WriteLine();
+    Console.WriteLine("=================================");
+    Console.WriteLine("      RESUMEN DE SOLICITUD");
+    Console.WriteLine("=================================");
 
-    Console.WriteLine("Pagos: " + AsignarPrioridad("Pagos"));
-    Console.WriteLine("Plataforma: " + AsignarPrioridad("Plataforma"));
-    Console.WriteLine("Matrícula: " + AsignarPrioridad("Matrícula"));
-    Console.WriteLine("Constancia: " + AsignarPrioridad("Constancia"));
-    Console.WriteLine("Otro: " + AsignarPrioridad("Otro"));
+    Console.WriteLine("Código: " + codigo);
+    Console.WriteLine("Nombre: " + nombre);
+    Console.WriteLine("Tipo de consulta: " + tipo);
+    Console.WriteLine("Descripción: " + descripcion);
+    Console.WriteLine("Prioridad: " + prioridad);
+
+    Console.WriteLine("=================================");
 }
+static void RegistrarSolicitud()
+{
+    Console.WriteLine();
+    Console.WriteLine("--- REGISTRO DE SOLICITUD ---");
+
+    // Solicitar código.
+    Console.Write("Ingrese el código de estudiante: ");
+    string codigo = Console.ReadLine() ?? "";
+
+    // Validar código.
+    if (!ValidarCodigo(codigo))
+    {
+        Console.WriteLine("Código inválido.");
+        return;
+    }
+
+    // Solicitar nombre.
+    Console.Write("Ingrese el nombre: ");
+    string nombre = Console.ReadLine() ?? "";
+
+    // Validar nombre.
+    if (!ValidarTexto(nombre))
+    {
+        Console.WriteLine("El nombre no puede estar vacío.");
+        return;
+    }
+
+    // Solicitar tipo de consulta.
+    Console.Write("Ingrese el tipo de consulta: ");
+    string tipo = Console.ReadLine() ?? "";
+
+    // Validar tipo de consulta.
+    if (!ValidarTipoConsulta(tipo))
+    {
+        Console.WriteLine("Tipo de consulta inválido.");
+        return;
+    }
+
+    // Solicitar descripción.
+    Console.Write("Ingrese una descripción: ");
+    string descripcion = Console.ReadLine() ?? "";
+
+    // Validar descripción.
+    if (!ValidarTexto(descripcion))
+    {
+        Console.WriteLine("La descripción no puede estar vacía.");
+        return;
+    }
+
+    // Asignar prioridad.
+    string prioridad = AsignarPrioridad(tipo);
+
+    // Mostrar resumen.
+    MostrarResumen(
+        codigo,
+        nombre,
+        tipo,
+        descripcion,
+        prioridad
+    );
+}
+static void Main()
+    {
+        RegistrarSolicitud();
+    }
 }
