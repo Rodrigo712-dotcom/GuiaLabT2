@@ -134,8 +134,45 @@ static void RegistrarSolicitud()
         prioridad
     );
 }
+static void MostrarMenu()
+{
+    Console.WriteLine();
+    Console.WriteLine("=================================");
+    Console.WriteLine("       SOPORTE ACADÉMICO");
+    Console.WriteLine("=================================");
+    Console.WriteLine("1. Registrar solicitud");
+    Console.WriteLine("2. Salir");
+    Console.WriteLine("=================================");
+}
 static void Main()
+{
+    int opcion = 0;
+
+    while (opcion != 2)
     {
-        RegistrarSolicitud();
+        MostrarMenu();
+
+        Console.Write("Seleccione una opción: ");
+        string entrada = Console.ReadLine() ?? "";
+
+        if (!int.TryParse(entrada, out opcion))
+        {
+            Console.WriteLine("Debe ingresar una opción numérica.");
+            continue;
+        }
+
+        if (opcion == 1)
+        {
+            RegistrarSolicitud();
+        }
+        else if (opcion == 2)
+        {
+            Console.WriteLine("Programa finalizado.");
+        }
+        else
+        {
+            Console.WriteLine("Opción inválida.");
+        }
     }
+}
 }
